@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>提交成功</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    min-height:100vh;
+    background: linear-gradient(160deg, #120420, #2b0f3b, #441828);
+    font-family:"Microsoft Yahei",sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+}
+.ghost{ 
+ position:absolute; 
+ width:40px; 
+ height:50px; 
+ background:#fefefe; 
+ border-radius: 50% 50% 40% 40%; 
+ opacity:0.7; 
+ animation: float 8s infinite ease-in-out;
+}
+.ghost::before,.ghost::after{ 
+ content:""; 
+ position:absolute; 
+ width:8px;height:8px; 
+ background:#111; 
+ border-radius:50%; 
+ top:14px;
+}
+.ghost::before{left:8px}
+.ghost::after{right:8px}
+.ghost .mouth{ 
+ position:absolute; 
+ width:12px;height:6px; 
+ border:2px solid #111; 
+ border-top:none; 
+ border-radius:0 0 10px 10px; 
+ left:14px; 
+ top:28px;
+}
+@keyframes float{ 
+ 0%{transform: translateY(100vh) rotate(-8deg);opacity:0} 
+ 10%{opacity:0.65} 
+ 90%{opacity:0.65} 
+ 100%{transform: translateY(-120px) rotate(8deg);opacity:0}
+}
+.star{
+    position:absolute;
+    width:4px;height:4px;
+    background:#ffdd77;
+    border-radius:50%;
+    box-shadow:0 0 8px #ffb944;
+    animation: twinkle 2.5s infinite alternate;
+}
+@keyframes twinkle{
+    0%{opacity:0.2;transform:scale(0.6)}
+    100%{opacity:1;transform:scale(1.2)}
+}
+.wrap{
+    z-index:2;
+}
+.icon{
+    font-size:60px;
+    margin-bottom:16px;
+    animation: bounce 1.6s infinite alternate;
+}
+@keyframes bounce{
+    0%{transform: translateY(0)}
+    100%{transform: translateY(-8px)}
+}
+.title{
+    font-size:24px;
+    color:#ffddaa;
+    text-shadow:0 0 14px #ff8833;
+    margin-bottom:12px;
+}
+.desc{
+    color:#fffbeb;
+    font-size:17px;
+    line-height:1.8;
+}
+.back-btn{
+    display:inline-block;
+    margin-top:26px;
+    padding:10px 24px;
+    background:#ff7b26;
+    color:#fff;
+    text-decoration:none;
+    border-radius:8px;
+    box-shadow:0 0 12px #ff7b2677;
+}
+.back-btn:hover{
+    filter:brightness(1.15);
+}
+</style>
+</head>
+<body>
+<script>
+function createGhost(){ 
+ const g = document.createElement("div"); 
+ g.className="ghost"; 
+ const mouth = document.createElement("div"); 
+ mouth.className="mouth"; 
+ g.appendChild(mouth); 
+ g.style.left = Math.random()*100 + "%"; 
+ g.style.animationDuration = (6 + Math.random()*6)+"s"; 
+ g.style.animationDelay = Math.random()*4+"s"; 
+ document.body.appendChild(g); 
+ setTimeout(()=>g.remove(),14000)
+}
+function createStar(){ 
+ const s = document.createElement("div"); 
+ s.className="star"; 
+ s.style.left=Math.random()*100+"%"; 
+ s.style.top=Math.random()*100+"%"; 
+ s.style.animationDelay = Math.random()*3+"s";
+ document.body.appendChild(s);
+}
+setInterval(createGhost, 2200);
+for(let i=0;i<30;i++) createStar();
+</script>
+<div class="wrap">
+    <div class="icon">🎃</div>
+    <div class="title">糖果订单收下啦！</div>
+    <div class="desc">
+        你的地址我收到咯<br>
+        甜甜的糖果正在打包，马上奔向你✨
+    </div>
+    <a href="./index.html" class="back-btn">返回贺卡</a>
+</div>
+</body>
+</html>

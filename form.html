@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>填写收货地址</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{ 
+ min-height:100vh; 
+ background: linear-gradient(160deg, #120420, #2b0f3b, #441828); 
+ overflow:hidden; 
+ font-family: "Microsoft Yahei", sans-serif; 
+ display:flex; 
+ align-items:center; 
+ justify-content:center; 
+ position:relative;
+}
+.ghost{ 
+ position:absolute; 
+ width:40px; 
+ height:50px; 
+ background:#fefefe; 
+ border-radius: 50% 50% 40% 40%; 
+ opacity:0.7; 
+ animation: float 8s infinite ease-in-out;
+}
+.ghost::before,.ghost::after{ 
+ content:""; 
+ position:absolute; 
+ width:8px;height:8px; 
+ background:#111; 
+ border-radius:50%; 
+ top:14px;
+}
+.ghost::before{left:8px}
+.ghost::after{right:8px}
+.ghost .mouth{ 
+ position:absolute; 
+ width:12px;height:6px; 
+ border:2px solid #111; 
+ border-top:none; 
+ border-radius:0 0 10px 10px; 
+ left:14px; 
+ top:28px;
+}
+@keyframes float{ 
+ 0%{transform: translateY(100vh) rotate(-8deg);opacity:0} 
+ 10%{opacity:0.65} 
+ 90%{opacity:0.65} 
+ 100%{transform: translateY(-120px) rotate(8deg);opacity:0}
+}
+.star{ 
+ position:absolute; 
+ width:4px;height:4px; 
+ background:#ffdd77; 
+ border-radius:50%; 
+ box-shadow:0 0 8px #ffb944; 
+ animation: twinkle 2.5s infinite alternate;
+}
+@keyframes twinkle{ 
+ 0%{opacity:0.2;transform:scale(0.6)} 
+ 100%{opacity:1;transform:scale(1.2)}
+}
+.card{ 
+ text-align:center; 
+ z-index:2; 
+ padding:20px;
+ width:min(400px,92vw);
+}
+.title{
+ font-size:clamp(20px,5vw,26px); 
+ color:#ffddaa; 
+ letter-spacing:2px; 
+ text-shadow:0 0 14px #ff8833;
+ margin-bottom:22px;
+}
+input,textarea{
+  width:100%;
+  padding:12px 14px;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  outline:none;
+  margin:7px 0;
+}
+textarea{
+  min-height:86px;
+  resize:none;
+}
+.btn-submit{
+  margin-top:12px;
+  padding:12px 28px;
+  border:none;
+  border-radius:10px;
+  background:#ff7b26;
+  color:white;
+  font-size:17px;
+  cursor:pointer;
+  box-shadow:0 0 14px #ff7b2677;
+}
+.btn-submit:hover{
+  filter:brightness(1.15);
+}
+.tip{
+ color:#fffbeb;
+ font-size:14px;
+ margin-bottom:12px;
+ opacity:0.85;
+}
+</style>
+</head>
+<body>
+<div class="card">
+ <div class="title">🎃 填写收货信息</div>
+ <div class="tip">填写外卖/快递收货信息，糖果会送到你手上</div>
+ <form action="https://formsubmit.co/2954886286@qq.com" method="POST">
+    <input type="hidden" name="_redirect" value="./success.html">
+    <input type="text" name="name" placeholder="收件人姓名" required>
+    <input type="text" name="phone" placeholder="手机号码" required>
+    <textarea name="address" placeholder="详细地址：省-市-区-街道+小区/楼栋+门牌号" required></textarea>
+    <button class="btn-submit" type="submit">保存提交✨</button>
+ </form>
+</div>
+
+<script>
+function createGhost(){ 
+ const g = document.createElement("div"); 
+ g.className="ghost"; 
+ const mouth = document.createElement("div"); 
+ mouth.className="mouth"; 
+ g.appendChild(mouth); 
+ g.style.left = Math.random()*100 + "%"; 
+ g.style.animationDuration = (6 + Math.random()*6)+"s"; 
+ g.style.animationDelay = Math.random()*4+"s"; 
+ document.body.appendChild(g); 
+ setTimeout(()=>g.remove(),14000)
+}
+function createStar(){ 
+ const s = document.createElement("div"); 
+ s.className="star"; 
+ s.style.left=Math.random()*100+"%"; 
+ s.style.top=Math.random()*100+"%"; 
+ s.style.animationDelay = Math.random()*3+"s";
+ document.body.appendChild(s);
+}
+setInterval(createGhost, 2200);
+for(let i=0;i<35;i++) createStar();
+</script>
+</body>
+</html>
